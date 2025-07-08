@@ -2,7 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
-import * as apigateway from 'aws-cdk-lib/aws-apigateway';
+import * as s3 from 'aws-cdk-lib/aws-s3';
 import path = require('path');
 
 export class CdkVitestTemplateStack extends cdk.Stack {
@@ -14,14 +14,11 @@ export class CdkVitestTemplateStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_16_X,
     });
 
-    const api = new apigateway.RestApi(this, 'HelloWorldApi', {
-      restApiName: 'Hello World Service',
-      description: 'This service serves hello world.',
+    const bucket = new s3.Bucket(this, 'MyFirstBucket', {
+      versioned: true,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
     });
-
-    const helloIntegration = new apigateway.LambdaIntegration(myFunction);
-    const helloResource = api.root.addResource('hello');
-    helloResource.addMethod('GET', helloIntegration);
   }
 
 }
