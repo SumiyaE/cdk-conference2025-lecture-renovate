@@ -10,7 +10,7 @@ export class CdkVitestTemplateStack extends cdk.Stack {
     const myFunction = new NodejsFunction(this, "HelloWorldFunction", {
       entry: path.join(__dirname, "../src/lambda/index.ts"),
       handler: "handler",
-      runtime: lambda.Runtime.NODEJS_22_X,
+      runtime: lambda.Runtime.NODEJS_16_X,
     });
   }
 }
