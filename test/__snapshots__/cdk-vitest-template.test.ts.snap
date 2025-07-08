@@ -21,6 +21,11 @@ exports[`cdk stack test 1`] = `
           },
           "S3Key": "HASH-REPLACED.zip",
         },
+        "Environment": {
+          "Variables": {
+            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
+          },
+        },
         "Handler": "index.handler",
         "Role": {
           "Fn::GetAtt": [
@@ -28,7 +33,7 @@ exports[`cdk stack test 1`] = `
             "Arn",
           ],
         },
-        "Runtime": "nodejs22.x",
+        "Runtime": "nodejs14.x",
       },
       "Type": "AWS::Lambda::Function",
     },
