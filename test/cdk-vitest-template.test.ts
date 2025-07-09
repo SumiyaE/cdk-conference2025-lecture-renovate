@@ -7,7 +7,12 @@ import customSerializer from './plugin/custom-serializer';
 test('cdk stack test', () => {
   const app = new cdk.App();
   // WHEN
-  const stack = new CdkVitestTemplate.CdkVitestTemplateStack(app, 'TestStack');
+  const stack = new CdkVitestTemplate.CdkVitestTemplateStack(app, 'TestStack', {
+    env: {
+      account: '123456789012', // テスト用のダミーアカウントID
+      region: 'ap-northeast-1',
+    },
+  });
   // THEN
   const template = Template.fromStack(stack);
 
